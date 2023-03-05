@@ -3,14 +3,6 @@ import requests
 
 app = Flask(__name__)
 
-@app.route("/", methods=["POST", "GET"])
-def index():
-    backend()
-    return render_template("index.html")
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
 def backend():
     url = "https://everyearthquake.p.rapidapi.com/latestEarthquakeNearMe"
 
@@ -23,4 +15,12 @@ def backend():
 
     response = requests.request("GET", url, headers=headers, params=querystring)
 
-    print(response.json)
+    print(response.text)
+
+@app.route("/", methods=["POST", "GET"])
+def index():
+    backend()
+    return render_template("index.html")
+
+if __name__ == "__main__":
+    app.run(debug=True)
