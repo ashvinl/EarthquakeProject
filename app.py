@@ -1,5 +1,7 @@
 from flask import Flask, render_template
 import requests
+import json
+import math
 
 app = Flask(__name__)
 
@@ -15,12 +17,18 @@ def backend():
 
     response = requests.request("GET", url, headers=headers, params=querystring)
 
-    print(response.text)
+    data = json.loads(response.text)
+
+    magnitude = data["data"][0]["title"][1:5]
+    radius = math.exp(float(magnitude)/1.01-0.13)*1000
+
+    return radius
+
 
 @app.route("/", methods=["POST", "GET"])
 def index():
-    backend()
-    return render_template("index.html")
+    text = backend()
+    return render_template("index.html", text=text)
 
 if __name__ == "__main__":
     app.run(debug=True)
