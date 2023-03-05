@@ -3,6 +3,7 @@ from flask import Flask, render_template
 import requests
 import json
 import math
+import gmplot
 
 app = Flask(__name__)
 
@@ -37,6 +38,12 @@ def getEarthquakeData():
     data = json.loads(response.text)
 
     return data
+
+def plot_map():
+    lats = get_location()
+    gmap = gmplot.GoogleMapPlotter(lats["latitude"], lats["longitude"], 13)
+    gmap.circle(lats["latitude"], lats["longitude"], radius())
+    gmap.draw("bob.html")
 
 def isThereAnEarthquake() -> bool:
     data = getEarthquakeData()
