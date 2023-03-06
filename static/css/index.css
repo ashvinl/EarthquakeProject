@@ -72,5 +72,51 @@
 
 #wrap {
     background-color: white;
+    text-align: center;
+    margin: 50px;
+    margin-left: 250px;
+    margin-right: 250px;
 }
 
+#radius {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+    color: rgb(34, 34, 34);
+}
+
+.inRadiusText {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 22px;
+    color: rgb(34, 34, 34);
+}
+
+.hospital {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    color: white;
+    border-radius: 50px;
+    padding: 20px;
+    background-color: rgb(227, 66, 66);
+    transition: 0.2s;
+    margin-bottom: 50px;
+}
+
+.hospital:hover {
+    transform: scale(1.02);
+}
+
+.iconlink {
+    color: white;
+}
+
+.iconlink:hover {
+    color: white;
+    text-decoration: none;
+}
+
+#info-wrap {
+    
+}

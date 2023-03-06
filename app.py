@@ -56,11 +56,11 @@ def radius() -> int:
     else:    
         radius = 0
 
-    return round(radius/1000,2)
+    return round(radius/10000,2)
 
 def sendText():
     account_sid = "AC5a09a73cf0869ab2188548ca49051f08"
-    auth_token  = "4e8a065cf7d9764863f85de2e69e9252"
+    auth_token  = "e06acb334821144e809a1c2195128872"
     client = Client(account_sid, auth_token)
     data = get_location()
     message = client.messages.create(
@@ -84,7 +84,7 @@ def isInRadius():
     dist = distance.distance(coords_1, coords_2).km
     if(radius() > dist):
         return True
-    return False
+    return True
 
 def getHospitals():
     google_places = GooglePlaces('AIzaSyAcHJq-yfKqAqJfCoPlfU-ZWlqL5DJp_rw')
@@ -139,6 +139,10 @@ def help():
     text = radius()
     hospitals = getHospitals()
     return render_template("index.html", sentHelp=True, text=text, hospitals=hospitals)
+
+@app.route("/info")
+def info():
+    return render_template("info.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

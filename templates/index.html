@@ -21,7 +21,9 @@
             href="{{ url_for('static', filename='css/index.css') }}"
         />
 
-        <link rel="stylesheet" href="../static/css/index.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="../static/css/index.css"/>
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +36,7 @@
         <div id="title-card">
             <div id="navbar">
                 <a class="navlink active" href="/">QuakeAlert</a>
+                <a class="navlink" href="/info">Info</a>
             </div>
             <br><br><br>
             <h1 id="title">QuakeAlert</h1>
@@ -49,10 +52,21 @@
 
         <div id="wrap">
             
-            <h6>Affected Earthquake Radius: {{text}} km</h6>
+            <h4 id="radius">Affected Earthquake Radius: <b>{{text}} km</b></h4> 
+            {% if inRadius %}
+                <p class="inRadiusText">(You are IN the radius!)</p>
+            {% else %}
+                <p class="inRadiusText">(You are NOT in the radius!)</p>
+            {% endif %}
+
 
             {% for hospital in hospitals %}
-                <p>{{hospital[0]}}: {{hospital[1]}} km away from your location</p>
+                <div class="hospital">
+                    <span style="float: left; transform: scale(2.5); margin-top: 30px; margin-left: 50px;" class="material-symbols-outlined">health_and_safety</span>
+                    <p style="display: inline block; font-size: 24px;"><span style="font-weight: 700;">{{hospital[0]}}</span><br>{{hospital[1]}} km away from your location</p>
+                    <a href="{{hospital[2]}}" style="float: right; transform: scale(2.5); margin-top: -55px; margin-right: 50px;" class="material-symbols-outlined iconlink" target="_blank">directions</a>
+                </div>
+                
             {% endfor %}
             
         </div>
