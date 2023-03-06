@@ -1,10 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 
 import requests
 import json
 import math
 
+import os
+from twilio.rest import Client
+
 app = Flask(__name__)
+
+sentHelp = False
 
 def get_ip() -> str:
     response = requests.get('https://api64.ipify.org?format=json').json()
@@ -53,11 +58,27 @@ def radius() -> int:
 
     return radius
 
+def sendText():
+    account_sid = "AC5a09a73cf0869ab2188548ca49051f08"
+    auth_token  = "4e8a065cf7d9764863f85de2e69e9252"
+    client = Client(account_sid, auth_token)
+    data = get_location()
+    message = client.messages.create(
+        body="Help! I need emergency services. I am located at Latitude: " + str(data["latitude"]) + " and Longitude: " + str(data["longitude"]),
+        from_="+18888235205",
+        to="+19256405709"
+    )
+    sentHelp = True
 
 @app.route("/", methods=["POST", "GET"])
 def index():
     text = radius()
-    return render_template("index.html", text=text)
+    return render_template("index.html", sentHelp=sentHelp, text=text)
+
+@app.route("/help")
+def help():
+    sendText()
+    return redirect(url_for('index'))
 
 if __name__ == "__main__":
     app.run(debug=True)

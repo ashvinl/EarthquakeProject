@@ -1,0 +1,75 @@
+#body {
+    background-color: rgb(255, 255, 255);
+}
+
+#navbar {
+    color: white;
+    padding: 20px 0px 30px 20px;
+}
+
+.navlink {
+    font-family: 'Urbanist', sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 32px;
+    font-weight: bold;
+    padding: 15px 30px;
+    float: left;
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+.navlink:hover {
+    color: rgb(227, 66, 66);
+    text-decoration: none;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#title-card {
+    background-color: rgb(227, 66, 66);
+    height: 500px;
+    text-align: center;
+}
+
+#title {
+    font-family: 'Urbanist', sans-serif;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 108px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#help {
+    background-color: white;
+    color: rgb(227, 66, 66);
+    font-family: 'Urbanist', sans-serif;
+    text-align: center;
+    margin: auto;
+    font-weight: 800;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 32px;
+    transition: 0.2s;
+}
+
+#help:hover {
+	background-color: #ffffff;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 34px;
+	box-shadow: inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5);
+    cursor: pointer;
+}
+
+#help-subtext {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    color: white;
+}
+
+#wrap {
+    background-color: white;
+}
+
