@@ -49,7 +49,11 @@
 
         <div id="wrap">
             
-            <h6>Earthquake response: {{text}}</h6>
+            <h6>Affected Earthquake Radius: {{text}} km</h6>
+
+            {% for hospital in hospitals %}
+                <p>{{hospital[0]}}: {{hospital[1]}} km away from your location</p>
+            {% endfor %}
             
         </div>
 
