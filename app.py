@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, url_for
 import requests
 import json
 import math
+import gmplot
 
 import os
 from twilio.rest import Client
@@ -42,6 +43,12 @@ def getEarthquakeData():
     data = json.loads(response.text)
 
     return data
+
+def plot_map():
+    lats = get_location()
+    gmap = gmplot.GoogleMapPlotter(lats["latitude"], lats["longitude"], 13)
+    gmap.circle(lats["latitude"], lats["longitude"], radius())
+    gmap.draw("bob.html")
 
 def isThereAnEarthquake() -> bool:
     data = getEarthquakeData()
