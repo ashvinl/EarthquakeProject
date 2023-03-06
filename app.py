@@ -69,6 +69,23 @@ def sendText():
         to="+19256405709"
     )
 
+def getHospitalLink(hospital):
+        dir = "https://www.google.com/maps/place/"
+        strHosp = hospital
+        strHosp = strHosp.replace(" ", "+")
+
+        return dir + strHosp
+
+def isInRadius():
+    data = get_location()
+    earth = getEarthquakeData()
+    coords_1 = (data["latitude"], data["longitude"])
+    coords_2 = (earth["latitude"], earth["longitude"])
+    dist = distance.distance(coords_1, coords_2).km
+    if(radius() > dist):
+        return True
+    return False
+
 def getHospitals():
     google_places = GooglePlaces('AIzaSyAcHJq-yfKqAqJfCoPlfU-ZWlqL5DJp_rw')
     data = get_location()
@@ -102,6 +119,7 @@ def getHospitals():
         coords_2 = (place.geo_location['lat'], place.geo_location['lng'])
         dist = distance.distance(coords_1, coords_2).km
         tempArr.append(round(dist, 2))
+        tempArr.append(getHospitalLink(place.name))
         hospitalList.append(tempArr)
 
     hospitalList.sort(key=lambda x:x[1])
